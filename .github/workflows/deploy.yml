@@ -31,8 +31,12 @@ jobs:
     - name: 创建打包
       run: npm run build # 打包
 
-    - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
+    - name: upload production artifacts # 上传打包文件
+      uses: actions/upload-pages-artifact@v1
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./dist
+        path: dist
+
+      # deploy
+    - name: Deploy Page To Release
+      id: deployment
+      uses: actions/deploy-pages@v1
