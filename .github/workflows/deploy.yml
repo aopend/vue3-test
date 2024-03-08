@@ -31,7 +31,7 @@ jobs:
     - name: 创建打包
       run: npm run build # 打包
 
-    - name: upload production artifacts
+    - name: upload production artifacts # 上传打包文件
       uses: actions/upload-pages-artifact@v1
       with:
         path: dist

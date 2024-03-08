@@ -18,6 +18,17 @@ const message = (option: Option) => {
     render(vm, container)
     document.body.appendChild(container.firstElementChild!)
 
+    const close = () => {
+        container.remove()
+    }
+
+
+    setTimeout(() => {
+        close()
+    }, 3000);
+
+    return close
+
 }
 
 
