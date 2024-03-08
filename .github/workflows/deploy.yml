@@ -1,23 +1,26 @@
-name: test Deploy to GitHub Pages
+name: Deploy to GitHub Pages
 
 on:
   push:
     branches:
-      - main  # 或者你主分支的名字，如：master
+      - main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Setup Node.js
-      uses: actions/setup-node@v2
+    - uses: actions/checkout@v3
       with:
-        node-version: '18'  # 使用你项目的Node.js版本
+        fetch-depth: 0  # 需要完整历史以确保子模块或其它依赖正确检出
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20'  # 更新到Node.js 20.x
 
     - name: Install dependencies
-      run: npm install
+      run: npm ci
 
     - name: Build project
       run: npm run build
