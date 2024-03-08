@@ -1,4 +1,4 @@
-name: test Deploy to GitHub Pages
+name: 打包测试
 
 on:
   push:
@@ -6,27 +6,29 @@ on:
       - main
 
 jobs:
+
   deploy:
+    name: 部署
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v3 # 检出代码
       with:
         fetch-depth: 0  # 需要完整历史以确保子模块或其它依赖正确检出
 
     - name: Setup Node.js
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v3 # 安装Node.js
       with:
         node-version: '20'  # 更新到Node.js 20.x
 
     - name: Install dependencies
-      run: npm install
+      run: npm install # 安装依赖
 
     - name: Build project
-      run: npm run build
+      run: npm run build # 打包
 
     - name: Deploy
-      uses: peaceiris/actions-gh-pages@v3
+      uses: peaceiris/actions-gh-pages@v3 # 部署
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./dist/
