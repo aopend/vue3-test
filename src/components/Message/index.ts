@@ -14,16 +14,18 @@ const message = (option: Option) => {
     const container = document.createElement('div')
     const vm = h(Msg, { seed: seed++, ...option })
 
-
     render(vm, container)
-    document.body.appendChild(container.firstElementChild!)
-
+    console.log(container)
+    document.body.appendChild(container)
+    let time = 0;
     const close = () => {
-        container.remove()
+        time && clearTimeout(time)
+        console.log(container)
+        document.body.removeChild(container)
     }
 
-
-    setTimeout(() => {
+    time = setTimeout(() => {
+        console.log('close')
         close()
     }, 3000);
 
