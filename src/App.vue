@@ -1,13 +1,14 @@
 <template>
+  <img src="//assets.fifedu.com/static/adaptive_learning_system_pc/images/logo.png?v=1" alt="">
   <div class="Con" v-if="!isMoer">
     <Wold :text="text">
       <a @click="Moer">详情</a>
     </Wold>
 
     <!-- <Message></Message> -->
-    <button class="btn" @click="openMessage">点击</button>
 
   </div>
+  <button class="btn" @click="openMessage">点击</button>
 
   <div class="Con" v-if="isMoer">
     {{ text }}
